@@ -1,0 +1,1 @@
+hsa 9606	Eukaryota	Metazoa	Chordata	Mammalia	Primates	Hominidae	Homo	Homo sapiens
