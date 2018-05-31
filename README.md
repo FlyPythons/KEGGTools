@@ -1,2 +1,2 @@
 # KEGGTools
-A tool to download and process KEGG database
+A collection of tools to download and process KEGG database
