@@ -88,18 +88,19 @@ def set_args():
 
     args = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                    description="""
-description:
-    get the protein of genes in keg from pep
+extract proteins in KO from NCBI download files
 
 version: %s
-author:  %s
-email: %s
+contact: %s <%s>\
     """ % (__version__, " ".join(__author__), __email__))
 
-    args.add_argument("--org", required=True, help=".org file created by get_organism.py")
-    args.add_argument("--keg", required=True, help="directory contains org00001.keg")
-    args.add_argument("--pep", required=True, help="directory contains org.pep.fasta.gz")
-    args.add_argument("--out", default=".", help="output directory")
+    args.add_argument("--org", metavar="FILE", required=True,
+                      help="a list of KEGG organism abbr. at the first column")
+    args.add_argument("--keg", metavar="DIR", required=True,
+                      help="directory contains {org}00001.keg")
+    args.add_argument("--pep", metavar="DIR", required=True,
+                      help="directory contains {org}.pep.fasta.gz from NCBI")
+    args.add_argument("--out", metavar="DIR", default=".", help="output directory (default: current directory)")
 
     return args.parse_args()
 

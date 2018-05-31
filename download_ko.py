@@ -80,17 +80,18 @@ def set_args():
 
     args = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                    description="""
-description:
-    Download all KEGG Orthology (KO) of KEGG organisms to it's specific .keg file.
+download all KEGG Orthology (KO) of KEGG organisms.
 
 version: %s
-author:  %s
-email: %s
+contact: %s <%s>\
     """ % (__version__, " ".join(__author__), __email__))
 
-    args.add_argument("--org", required=True, help="a list of KEGG organism abbr., the first column is considered")
-    args.add_argument("--out", default=".", help="output directory")
-    args.add_argument("--concurrent", type=int, default=5, help="number of processes concurrent")
+    args.add_argument("--org", metavar="FILE", required=True,
+                      help="a list of KEGG organism abbr. at the first column")
+    args.add_argument("--out", metavar="DIR",
+                      default=".", help="output directory (default: current directory)")
+    args.add_argument("--concurrent", metavar="INT", type=int,
+                      default=5, help="number of processes concurrent (default: 1)")
 
     return args.parse_args()
 

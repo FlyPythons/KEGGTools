@@ -90,17 +90,17 @@ def org2taxon(org, taxon):
 def set_args():
     args = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                    description="""
-description:
-    Get KEGG organism ranks by taxon id
+get KEGG organism classification by taxon id
 
 version: %s
-author:  %s
-email: %s
+contact: %s <%s>\
     """ % (__version__, " ".join(__author__), __email__))
 
-    args.add_argument("--keg", required=True, help="The htex file of KEGG Organisms in the NCBI Taxonomy, usually named as 'br08610.keg'")
-    args.add_argument("--taxon", required=True, help="NCBI Taxonomy file, taxon_id, rank information separated with tab")
-    args.add_argument("--out", default="KEGG.ranks", help="output file")
+    args.add_argument("--keg", metavar="FILE", required=True,
+                      help="The htex file of KEGG Organisms in the NCBI Taxonomy, usually named as 'br08610.keg'")
+    args.add_argument("--taxon", metavar="FILE", required=True,
+                      help="NCBI Taxonomy file, taxon_id, rank information separated with tab")
+    args.add_argument("--out", metavar="FILE", default="KEGG.ranks", help="output file (default: KEGG.ranks)")
 
     return args.parse_args()
 

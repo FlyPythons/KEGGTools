@@ -63,17 +63,16 @@ def set_args():
 
     args = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                    description="""
-description:
-    Download KEGG organism information from KEGG website.
-    The result consists organism abbr., organism name and source url
+download KEGG organism information from KEGG website.
 
 version: %s
-author:  %s
-email: %s
-    """ % (__version__, " ".join(__author__), __email__))
+contact: %s <%s>\
+""" % (__version__, " ".join(__author__), __email__))
 
-    args.add_argument("--url", default="http://www.kegg.jp/kegg/catalog/org_list.html", help="KEGG organism url")
-    args.add_argument("--out", default="KEGG.org", help="output filename")
+    args.add_argument("--url", default="http://www.kegg.jp/kegg/catalog/org_list.html",
+                      help="KEGG organism url (default: http://www.kegg.jp/kegg/catalog/org_list.html)")
+    args.add_argument("--out", metavar="FILE",
+                      default="KEGG.org", help="output filename (default: KEGG.org)")
 
     return args.parse_args()
 

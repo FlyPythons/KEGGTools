@@ -78,17 +78,16 @@ def set_args():
 
     args = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                    description="""
-description:
-    Download protein sequences of KEGG organism from NCBI.
+download protein sequences of KEGG organism from NCBI.
 
 version: %s
-author:  %s
-email: %s
+contact: %s <%s>\
     """ % (__version__, " ".join(__author__), __email__))
 
-    args.add_argument("--org", required=True, help=".org file created by download_organism.py")
-    args.add_argument("--out", default=".", help="output directory")
-    args.add_argument("--concurrent", type=int, default=1, help="number of download processes concurrent")
+    args.add_argument("--org", metavar="FILE", required=True, help=".org file created by download_organism.py")
+    args.add_argument("--out", metavar="DIR", default=".", help="output directory (default: current directory)")
+    args.add_argument("--concurrent", metavar="INT", type=int,
+                      default=1, help="number of download processes concurrent (default: 1)")
 
     return args.parse_args()
 
