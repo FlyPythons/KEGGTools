@@ -49,3 +49,16 @@ This will find 4715 Bacteria, 442 Eukaryota, 269 Archaea in KEGG organisms.
 python3 makedb.py --org human.org --keg KEGG-KO --pep NCBI-proteins --out human
 ```
 This will create 2 files consist of protein fasta file("human.pep.fasta") and protein related KO and pathway ID("human.pep2ko.txt").
+### Plot KEGG annotation result
+make kegg annotaion result like "human.pep2ko.txt"  
+* Create KEGG pathway file ".keg"
+```
+python3 make_keg.py --keg ko00001.keg --in human.pep2ko.txt --out human
+```
+This will create a keg file named "human.keg"
+* Plot KEGG pathway file
+```
+python3 plot_key.py --keg human.keg --out human
+```
+This will create a pdf file named "human.pdf"  
+![image](https://github.com/FlyPythons/KEGGTools/raw/master/examples/human.jpg)
