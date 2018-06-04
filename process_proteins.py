@@ -25,24 +25,25 @@ def process_protein(org, keg, pep, out):
     :return:
     """
 
+    r = []
     keg_name = os.path.join(keg, "%s00001.keg" % org)
     pep_name = os.path.join(pep, "%s.pep.fasta.gz" % org)
 
     if not os.path.exists(keg_name):
         LOG.info("keg %r not exists, skip" % keg_name)
-        return 1
+        return "%s\tno keg" % org
 
     if not os.path.exists(pep_name):
         LOG.info("pep %r not exists, skip" % pep_name)
-        return 1
+        return "%s\tno protein" % org
 
     gene_dict = read_org_ko(keg_name)
 
     if not gene_dict:
         LOG.info("keg %r is empty, skip" % keg_name)
-        return 1
+        return "%s\t keg is empty" % org
 
-    fh = open(os.path.join(out, "%s.pep.fasta" % org), "w")
+    records = []
 
     for record in open_fasta(pep_name):
         name = record.name
@@ -59,11 +60,16 @@ def process_protein(org, keg, pep, out):
             continue
 
         if id in gene_dict:
-            fh.write(">%s:%s\n%s\n" % (org, id, record.seq))
+            r.append(id)
 
-    fh.close()
+        records.append(">%s:%s\n%s\n" % (org, id, record.seq))
 
-    return 0
+    if r:
+        with open(os.path.join(out, "%s.pep.fasta" % org), "w") as fh:
+            fh.write("".join(records))
+        return 0
+    else:
+        return "%s\tpep not match with keg" % org
 
 
 def process_proteins(orgs, keg, pep, out):
