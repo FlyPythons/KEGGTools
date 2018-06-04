@@ -61,4 +61,4 @@ This will create a keg file named "human.keg"
 python3 plot_key.py --keg human.keg --out human
 ```
 This will create a pdf file named "human.pdf"  
-![image](https://github.com/FlyPythons/KEGGTools/raw/master/examples/human.jpg)
+![image](https://github.com/FlyPythons/KEGGTools/raw/master/examples/human.png)
